@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepak U | Soft Skills Trainer</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --bg-light: #f4f7f6;
+            --bg-dark: #222;
+            --white: #fff;
+            --glass: rgba(255, 255, 255, 0.95);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* --- Header --- */
+        header {
+            background: transparent;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        header.scrolled {
+            background: var(--glass);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: color 0.4s;
+        }
+
+        header.scrolled .logo {
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            position: relative;
+            transition: color 0.4s;
+        }
+
+        header.scrolled nav ul li a {
+            color: var(--primary-color);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.7)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            height: 100vh;
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        /* Profile Photo Container */
+        .profile-img-container {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid var(--accent-color);
+            overflow: hidden;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            opacity: 0;
+            animation: fadeInDown 1s forwards 0.2s; /* Matches entry animation */
+            background: #ccc; /* Placeholder color */
+        }
+
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeInDown 1s forwards 0.5s;
+        }
+
+        .typewriter {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            border-right: 2px solid var(--accent-color);
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typing 3.5s steps(40, end) forwards 1.5s, blink .75s step-end infinite;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            background: var(--accent-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+            opacity: 0;
+            animation: fadeInUp 1s forwards 3s;
+        }
+
+        .btn:hover {
+            background: #fff;
+            color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        /* --- Animations --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.3s; }
+        .stagger-3 { transition-delay: 0.5s; }
+
+        /* --- Content Sections --- */
+        .section-padding {
+            padding: 100px 10%;
+        }
+
+        .about-brief {
+            text-align: center;
+            background: var(--white);
+        }
+
+        .about-brief h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .about-brief p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* --- Stats --- */
+        .stats {
+            background: var(--primary-color);
+            color: var(--white);
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            flex-wrap: wrap;
+            padding: 80px 5%;
+        }
+
+        .stat-item h3 {
+            font-size: 4rem;
+            color: var(--accent-color);
+            margin-bottom: 0px;
+            font-weight: 800;
+        }
+
+        .stat-item p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* --- Expertise Grid --- */
+        .expertise {
+            background: var(--bg-light);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.4s, box-shadow 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-color);
+            transform: scaleY(0);
+            transition: transform 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .card ul {
+            list-style: none;
+            color: #555;
+        }
+        
+        .card ul li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .card ul li::before {
+            content: '•';
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* --- Tags --- */
+        .methodology {
+            text-align: center;
+        }
+        
+        .method-tags {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .tag {
+            background: var(--white);
+            border: 1px solid #ddd;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            color: var(--primary-color);
+            transition: all 0.3s;
+            cursor: default;
+        }
+
+        .tag:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            border-color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--bg-dark);
+            color: #888;
+            padding: 80px 5%;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        /* Keyframes */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .typewriter { font-size: 1rem; white-space: normal; animation: none; width: auto; border: none; }
+            .stats { flex-direction: column; gap: 40px; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="navbar">
+        <div class="logo">DEEPAK U</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        
+        <div class="profile-img-container">
+            <img src="pic.jpeg" alt="Deepak U Profile Photo">
+        </div>
+        
+        <h1>Deepak U</h1>
+        <div class="typewriter">
+            Behavioral & Soft Skills Trainer
+        </div>
+        <a href="#contact" class="btn">Start The Transformation</a>
+    </section>
+
+    <section class="section-padding about-brief" id="about">
+        <div class="reveal">
+            <h2>Profile Summary</h2>
+            <p>
+                A highly motivated Soft Skills Trainer with a background in Computer Science (BE, 8.7 CGPA).
+                I specialize in creating engaging, inclusive, and practical learning environments that bridge the gap between campus education and corporate expectations.
+            </p>
+        </div>
+        
+        <div class="method-tags reveal">
+            <span class="tag">Vivekananda Institute of Technology</span>
+            <span class="tag">Result Driven</span>
+            <span class="tag">Problem Solver</span>
+        </div>
+    </section>
+
+    <section class="stats" id="stats-section">
+        <div class="stat-item reveal">
+            <h3 class="counter" data-target="1000">0</h3>
+            <p>Participants Trained</p>
+        </div>
+        <div class="stat-item reveal">
+            <h3 class="counter" data-target="5">0</h3> 
+            <p>Average Rating (4.8+)</p>
+        </div>
+        <div class="stat-item reveal">
+            <h3 class="counter" data-target="3">0</h3>
+            <p>Institutes Coached</p>
+        </div>
+    </section>
+
+    <section class="section-padding expertise" id="expertise">
+        <div class="reveal">
+            <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 10px;">Core Competencies</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 40px;">Practical skills for modern professionals.</p>
+        </div>
+
+        <div class="grid-container">
+            <div class="card reveal stagger-1">
+                <h4>Communication</h4>
+                <ul>
+                    <li>Public Speaking & Presentation</li>
+                    <li>Interpersonal Skills</li>
+                    <li>Audio-Visual Learning Aids</li>
+                </ul>
+            </div>
+            <div class="card reveal stagger-2">
+                <h4>Leadership & EQ</h4>
+                <ul>
+                    <li>Emotional Intelligence</li>
+                    <li>Teamwork & Collaboration</li>
+                    <li>Conflict Resolution</li>
+                </ul>
+            </div>
+            <div class="card reveal stagger-3">
+                <h4>Career Growth</h4>
+                <ul>
+                    <li>Campus to Corporate</li>
+                    <li>Interview Preparation</li>
+                    <li>Time & Stress Management</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding methodology" style="background: var(--white);">
+        <h3 class="reveal" style="color:var(--primary-color); font-size: 2rem;">Training Methodology</h3>
+        <p class="reveal" style="margin-bottom: 30px;">Interactive & Experiential Learning</p>
+        <div class="method-tags reveal">
+            <span class="tag">Role Plays</span>
+            <span class="tag">Case Studies</span>
+            <span class="tag">Simulations</span>
+            <span class="tag">Group Discussions</span>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="reveal">
+            <h2 style="color: var(--white); margin-bottom: 20px;">Contact Deepak U</h2>
+            <p style="margin-bottom: 10px;">Email: maddee329@gmail.com</p>
+            <p style="margin-bottom: 10px;">Mobile: +91 9353146340</p>
+            <p>LinkedIn: <a href="https://linkedin.com/in/maddee">linkedin.com/in/maddee</a></p>
+            <br>
+            <hr style="border-color: #444;">
+            <br>
+            <p class="copyright">&copy; 2025 Deepak U. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Scroll Reveal Logic
+        window.addEventListener('scroll', reveal);
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+
+        // 2. Navbar Transformation
+        const header = document.querySelector("header");
+        window.addEventListener("scroll", function() {
+            header.classList.toggle("scrolled", window.scrollY > 50);
+        });
+
+        // 3. Number Counter Animation
+        let counted = false;
+        const statsSection = document.querySelector('#stats-section');
+        
+        window.addEventListener('scroll', () => {
+            if(!counted && window.scrollY + window.innerHeight > statsSection.offsetTop + 100) {
+                const counters = document.querySelectorAll('.counter');
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    const duration = 2000; 
+                    const increment = target / (duration / 20); 
+                    
+                    let c = 0;
+                    const updateCounter = () => {
+                        c += increment;
+                        if(c < target) {
+                            counter.innerText = Math.ceil(c) + (target > 10 ? "+" : "");
+                            setTimeout(updateCounter, 20);
+                        } else {
+                            counter.innerText = target + (target > 10 ? "+" : "");
+                        }
+                    };
+                    updateCounter();
+                });
+                counted = true;
+            }
+        });
+
+        // Trigger reveal on load
+        reveal();
+    </script>
+</body>
+</html>
