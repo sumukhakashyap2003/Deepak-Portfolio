@@ -24,7 +24,7 @@
         }
 
         body {
-            line-height: 1.6;
+            line-height: 1.8; /* Increased line height for better readability of the story */
             color: var(--text-color);
             overflow-x: hidden;
         }
@@ -101,7 +101,7 @@
 
         /* --- Hero Section --- */
         .hero {
-            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.7)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.7)), url('background.jpg') no-repeat center center/cover;
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
@@ -115,7 +115,6 @@
             padding: 0 20px;
         }
 
-        /* Profile Photo Container */
         .profile-img-container {
             width: 180px;
             height: 180px;
@@ -125,8 +124,8 @@
             margin-bottom: 25px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             opacity: 0;
-            animation: fadeInDown 1s forwards 0.2s; /* Matches entry animation */
-            background: #ccc; /* Placeholder color */
+            animation: fadeInDown 1s forwards 0.2s;
+            background: #ccc; 
         }
 
         .profile-img-container img {
@@ -214,6 +213,36 @@
             margin: 0 auto;
         }
 
+        /* --- My Story Section --- */
+        .story-section {
+            background: var(--bg-light);
+            text-align: left;
+        }
+
+        .story-content {
+            max-width: 900px;
+            margin: 0 auto;
+            color: #444;
+            font-size: 1.1rem;
+        }
+
+        .story-content h3 {
+            color: var(--accent-color);
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .story-content p {
+            margin-bottom: 20px;
+        }
+
+        .story-content .highlight {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
         /* --- Stats --- */
         .stats {
             background: var(--primary-color);
@@ -239,7 +268,7 @@
 
         /* --- Expertise Grid --- */
         .expertise {
-            background: var(--bg-light);
+            background: var(--white); /* Changed to white to contrast with Story */
         }
 
         .grid-container {
@@ -250,7 +279,8 @@
         }
 
         .card {
-            background: var(--white);
+            background: #fff;
+            border: 1px solid #eee; /* Added border since bg is white */
             border-radius: 10px;
             padding: 40px 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
@@ -304,7 +334,7 @@
             margin-right: 10px;
         }
 
-        /* --- Tags --- */
+        /* --- Methodology Tags --- */
         .methodology {
             text-align: center;
         }
@@ -332,6 +362,42 @@
             background: var(--primary-color);
             color: var(--white);
             border-color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        /* --- Featuring The Future Section --- */
+        .future-section {
+            background: var(--bg-light);
+            text-align: center;
+        }
+
+        .logos-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .logo-item {
+            position: relative;
+            transition: transform 0.3s;
+            padding: 10px;
+        }
+
+        .logo-item img {
+            height: 50px;
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            object-fit: contain;
+        }
+
+        .logo-item:hover img {
+            filter: grayscale(0%);
+            opacity: 1;
             transform: scale(1.1);
         }
 
@@ -372,6 +438,7 @@
             .hero h1 { font-size: 2.5rem; }
             .typewriter { font-size: 1rem; white-space: normal; animation: none; width: auto; border: none; }
             .stats { flex-direction: column; gap: 40px; }
+            .logos-grid { gap: 30px; }
             nav ul { display: none; }
         }
     </style>
@@ -384,7 +451,9 @@
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#story">My Story</a></li>
                 <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#future">Future</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -393,7 +462,7 @@
     <section class="hero" id="home">
         
         <div class="profile-img-container">
-            <img src="pic.jpeg" alt="Deepak U Profile Photo">
+            <img src="pic.jpeg" alt="Deepak U">
         </div>
         
         <h1>Deepak U</h1>
@@ -416,6 +485,34 @@
             <span class="tag">Vivekananda Institute of Technology</span>
             <span class="tag">Result Driven</span>
             <span class="tag">Problem Solver</span>
+        </div>
+    </section>
+
+    <section class="section-padding story-section" id="story">
+        <div class="reveal">
+            <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 20px;">My Story</h2>
+            
+            <div class="story-content">
+                <h3>⭐ Crafted by Dreams, Guided by Destiny</h3>
+                
+                <p>Crafted by dreams but entangled by situations — that was the beginning of my journey. A middle-class boy with a billion dreams, entrapped by the daily turmoil of expectations and responsibilities, yet silently nurturing a fire within. I was a leader born from the shadow, shaped not by privilege but by perseverance.</p>
+
+                <p>My dreams were always far above mediocre from the earliest phases of my life, and for that reason, people fondly called me the <span class="highlight">“Born Dreamer.”</span> But as I grew, situations around me began creating an atmosphere of delusion, almost as if they were spitting out a false version of reality — one designed to shrink my vision. Yet, something deeper fueled me. My passion became my anchor, and my manifestation overpowered every negative thought that tried to find a home within me.</p>
+
+                <p>After completing my schooling, my heart pulled me towards psychology, life coaching, and motivational speaking. That was the path where my spirit felt at home. But life — and family pressure — had other plans, pushing me into engineering. The transition was tough, but the fire inside me did not waver. If anything, challenges only strengthened my resolve.</p>
+
+                <p>Even within the constraints of an engineering environment, I seized every opportunity to showcase my abilities. I poured my energy into leadership, creativity, and service. Becoming the President of my college NSS Unit was not just a title — it was a platform. I presided over numerous impactful programs under the National Service Scheme, and for the first time, I saw my peers look at me as their guiding force. They believed in me, stood by me, and together, we created movements fueled by passion and purpose.</p>
+
+                <p>When I graduated from Vivekananda Institute of Technology with a B.E. in CSE, my parents once again directed me toward the IT industry. But destiny had begun whispering a different story. I started conducting events across colleges, training students in soft skills, personality development, and behavioral transformation. After just a few sessions, an unexpected wave of appreciation, heartfelt feedback, and overwhelming gratitude from both students and faculty washed over me.</p>
+                
+                <p>That was the moment I knew — I had found my niche.</p>
+
+                <p class="highlight" style="text-align: center; font-size: 1.2rem; margin: 40px 0;">Not in codes or circuits, but in people. In transformation. In communication. In impact.</p>
+
+                <p>Today, with immense gratitude for the grace showered upon me by the Almighty, my parents, my mentors, and everyone who believed in me, I stand proudly in my purpose. I am now pursuing a full-time career as a Soft-Skill Trainer and Behavioral Coach at TNS India Foundation, continuing the journey that once began as a dream in the shadow.</p>
+
+                <p>I was crafted by dreams, challenged by circumstances, and shaped into a leader born from the shadow — and this journey has only just begun.</p>
+            </div>
         </div>
     </section>
 
@@ -468,7 +565,7 @@
         </div>
     </section>
 
-    <section class="section-padding methodology" style="background: var(--white);">
+    <section class="section-padding methodology" style="background: var(--bg-light);">
         <h3 class="reveal" style="color:var(--primary-color); font-size: 2rem;">Training Methodology</h3>
         <p class="reveal" style="margin-bottom: 30px;">Interactive & Experiential Learning</p>
         <div class="method-tags reveal">
@@ -476,6 +573,39 @@
             <span class="tag">Case Studies</span>
             <span class="tag">Simulations</span>
             <span class="tag">Group Discussions</span>
+        </div>
+    </section>
+
+    <section class="section-padding future-section" id="future">
+        <div class="reveal">
+            <h2 style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 15px;">Featuring in the Future</h2>
+            <p style="font-size: 1.2rem; color: #666; max-width: 700px; margin: 0 auto;">
+                My vision is to share transformative insights on leadership and human potential on the world's most prestigious stages.
+            </p>
+        </div>
+        
+        <div class="logos-grid reveal">
+            <div class="logo-item" title="TEDx">
+                <img src="tedx.jpeg" alt="TEDx Logo">
+            </div>
+            <div class="logo-item" title="Big Think">
+                <img src="big think.png" alt="Big Think Logo">
+            </div>
+            <div class="logo-item" title="The Moth">
+                <img src="The Moth.png" alt="The Moth Logo">
+            </div>
+            <div class="logo-item" title="CreativeMornings">
+                <img src="creative-mornings-logo.png" alt="CreativeMornings Logo">
+            </div>
+            <div class="logo-item" title="Forbes">
+                <img src="forbes.png" alt="Forbes Logo">
+            </div>
+            <div class="logo-item" title="Entrepreneur">
+                <img src="entrepreneur.png" alt="Entrepreneur Magazine Logo">
+            </div>
+             <div class="logo-item" title="YourStory">
+                <img src="yourstory.jpg" alt="YourStory Logo">
+            </div>
         </div>
     </section>
 
