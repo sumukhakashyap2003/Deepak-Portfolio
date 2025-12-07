@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deepak U | Soft Skills Trainer</title>
+    <title>Deepak Shetty | Soft Skills Trainer</title>
     <style>
         :root {
             --primary-color: #2c3e50;
@@ -24,7 +24,7 @@
         }
 
         body {
-            line-height: 1.8; /* Increased line height for better readability of the story */
+            line-height: 1.8;
             color: var(--text-color);
             overflow-x: hidden;
         }
@@ -32,7 +32,7 @@
         /* --- Header --- */
         header {
             background: transparent;
-            padding: 1.5rem 5%;
+            padding: 1rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -47,7 +47,24 @@
             background: var(--glass);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
-            padding: 1rem 5%;
+            padding: 0.8rem 5%;
+        }
+
+        /* Logo Wrapper */
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .header-profile-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
+            display: block; 
         }
 
         .logo {
@@ -192,7 +209,7 @@
 
         /* --- Content Sections --- */
         .section-padding {
-            padding: 100px 10%;
+            padding: 80px 10%;
         }
 
         .about-brief {
@@ -213,25 +230,215 @@
             margin: 0 auto;
         }
 
+        /* --- HIGHLIGHT GALLERY (The 3 Images Horizontal) --- */
+        .highlight-gallery {
+            background: var(--white);
+            padding-bottom: 60px;
+        }
+
+        .highlight-grid {
+            display: grid;
+            /* Forced 3 Columns for horizontal layout */
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .highlight-item {
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            position: relative;
+            background: #f0f0f0;
+        }
+
+        .highlight-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .highlight-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* --- EVENTS SHOWCASE SECTION --- */
+        .events-section {
+            background: var(--bg-light);
+            padding: 80px 5%;
+        }
+
+        /* Wrapper for Hidden Events */
+        .events-hidden-wrapper {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 1s cubic-bezier(0.25, 1, 0.5, 1); /* Smooth slide */
+        }
+
+        /* Container for content inside wrapper to ensure spacing works */
+        .events-inner-container {
+            padding-top: 50px; /* Space between button and first card */
+        }
+
+        .event-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 60px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .event-header {
+            margin-bottom: 30px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 20px;
+        }
+
+        .event-header h3 {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        .event-header span {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .event-body {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .event-desc {
+            flex: 1;
+            min-width: 300px;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .event-desc ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .event-desc li {
+            margin-bottom: 15px;
+        }
+
+        .event-gallery-grid {
+            flex: 1;
+            min-width: 300px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .event-img {
+            height: 150px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #ddd;
+        }
+
+        .event-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+            cursor: pointer;
+        }
+
+        .event-img:hover img {
+            transform: scale(1.1);
+        }
+
         /* --- My Story Section --- */
         .story-section {
-            background: var(--bg-light);
+            background: var(--white);
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        .story-teaser h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .story-teaser h3 {
+            font-size: 1.3rem;
+            color: #666;
+            font-weight: 400;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        /* Unified Toggle Button Style */
+        .toggle-btn {
+            background: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toggle-btn:hover {
+            background: var(--accent-color);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .toggle-icon {
+            transition: transform 0.3s;
+        }
+
+        .toggle-btn.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Story Hidden Content Wrapper */
+        .story-hidden-wrapper {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 1s cubic-bezier(0.25, 1, 0.5, 1);
             text-align: left;
         }
 
         .story-content {
             max-width: 900px;
-            margin: 0 auto;
+            margin: 40px auto 0 auto;
             color: #444;
             font-size: 1.1rem;
-        }
-
-        .story-content h3 {
-            color: var(--accent-color);
-            margin-bottom: 25px;
-            text-align: center;
-            font-size: 1.5rem;
-            font-weight: 600;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #f0f0f0;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
         .story-content p {
@@ -268,7 +475,7 @@
 
         /* --- Expertise Grid --- */
         .expertise {
-            background: var(--white); /* Changed to white to contrast with Story */
+            background: var(--bg-light);
         }
 
         .grid-container {
@@ -280,7 +487,7 @@
 
         .card {
             background: #fff;
-            border: 1px solid #eee; /* Added border since bg is white */
+            border: 1px solid #eee;
             border-radius: 10px;
             padding: 40px 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
@@ -367,7 +574,7 @@
 
         /* --- Featuring The Future Section --- */
         .future-section {
-            background: var(--bg-light);
+            background: var(--white);
             text-align: center;
         }
 
@@ -439,6 +646,9 @@
             .typewriter { font-size: 1rem; white-space: normal; animation: none; width: auto; border: none; }
             .stats { flex-direction: column; gap: 40px; }
             .logos-grid { gap: 30px; }
+            .event-body { flex-direction: column; }
+            /* Mobile response for highlight gallery */
+            .highlight-grid { grid-template-columns: 1fr; }
             nav ul { display: none; }
         }
     </style>
@@ -446,13 +656,17 @@
 <body>
 
     <header id="navbar">
-        <div class="logo">DEEPAK U</div>
+        <a href="#home" class="logo-wrapper">
+            <img src="hpic.jpg" alt="Deepak Shetty" class="header-profile-img">
+            <div class="logo">DEEPAK SHETTY</div>
+        </a>
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#story">My Story</a></li>
                 <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#events">Events</a></li>
                 <li><a href="#future">Future</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -462,10 +676,10 @@
     <section class="hero" id="home">
         
         <div class="profile-img-container">
-            <img src="pic.jpeg" alt="Deepak U">
+            <img src="pic.jpeg" alt="Deepak Shetty">
         </div>
         
-        <h1>Deepak U</h1>
+        <h1>Deepak Shetty</h1>
         <div class="typewriter">
             Behavioral & Soft Skills Trainer
         </div>
@@ -476,42 +690,57 @@
         <div class="reveal">
             <h2>Profile Summary</h2>
             <p>
-                A highly motivated Soft Skills Trainer with a background in Computer Science (BE, 8.7 CGPA).
+                A highly motivated Soft Skills Trainer.
                 I specialize in creating engaging, inclusive, and practical learning environments that bridge the gap between campus education and corporate expectations.
             </p>
         </div>
-        
-        <div class="method-tags reveal">
-            <span class="tag">Vivekananda Institute of Technology</span>
-            <span class="tag">Result Driven</span>
-            <span class="tag">Problem Solver</span>
+    </section>
+
+    <section class="highlight-gallery">
+        <div class="highlight-grid">
+            <div class="highlight-item reveal stagger-1">
+                <img src="p1.jpg" alt="Highlight 1">
+            </div>
+            <div class="highlight-item reveal stagger-2">
+                <img src="p2.jpg" alt="Highlight 2">
+            </div>
+            <div class="highlight-item reveal stagger-3">
+                <img src="p3.jpg" alt="Highlight 3">
+            </div>
         </div>
     </section>
 
     <section class="section-padding story-section" id="story">
         <div class="reveal">
-            <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 20px;">My Story</h2>
+            <div class="story-teaser">
+                <h2>My Story</h2>
+                <h3>"⭐ Crafted by Dreams, Guided by Destiny"</h3>
+                
+                <button class="toggle-btn" onclick="toggleStory(this)">
+                    Read My Journey <span class="toggle-icon">▼</span>
+                </button>
+            </div>
             
-            <div class="story-content">
-                <h3>⭐ Crafted by Dreams, Guided by Destiny</h3>
-                
-                <p>Crafted by dreams but entangled by situations — that was the beginning of my journey. A middle-class boy with a billion dreams, entrapped by the daily turmoil of expectations and responsibilities, yet silently nurturing a fire within. I was a leader born from the shadow, shaped not by privilege but by perseverance.</p>
+            <div class="story-hidden-wrapper" id="storyWrapper">
+                <div class="story-content">
+                    <p>Crafted by dreams but entangled by situations — that was the beginning of my journey. A middle-class boy with a billion dreams, entrapped by the daily turmoil of expectations and responsibilities, yet silently nurturing a fire within. I was a leader born from the shadow, shaped not by privilege but by perseverance.</p>
 
-                <p>My dreams were always far above mediocre from the earliest phases of my life, and for that reason, people fondly called me the <span class="highlight">“Born Dreamer.”</span> But as I grew, situations around me began creating an atmosphere of delusion, almost as if they were spitting out a false version of reality — one designed to shrink my vision. Yet, something deeper fueled me. My passion became my anchor, and my manifestation overpowered every negative thought that tried to find a home within me.</p>
+                    <p>My dreams were always far above mediocre from the earliest phases of my life, and for that reason, people fondly called me the <span class="highlight">“Born Dreamer.”</span> But as I grew, situations around me began creating an atmosphere of delusion, almost as if they were spitting out a false version of reality — one designed to shrink my vision. Yet, something deeper fueled me. My passion became my anchor, and my manifestation overpowered every negative thought that tried to find a home within me.</p>
 
-                <p>After completing my schooling, my heart pulled me towards psychology, life coaching, and motivational speaking. That was the path where my spirit felt at home. But life — and family pressure — had other plans, pushing me into engineering. The transition was tough, but the fire inside me did not waver. If anything, challenges only strengthened my resolve.</p>
+                    <p>After completing my schooling, my heart pulled me towards psychology, life coaching, and motivational speaking. That was the path where my spirit felt at home. But life — and family pressure — had other plans, pushing me into engineering. The transition was tough, but the fire inside me did not waver. If anything, challenges only strengthened my resolve.</p>
 
-                <p>Even within the constraints of an engineering environment, I seized every opportunity to showcase my abilities. I poured my energy into leadership, creativity, and service. Becoming the President of my college NSS Unit was not just a title — it was a platform. I presided over numerous impactful programs under the National Service Scheme, and for the first time, I saw my peers look at me as their guiding force. They believed in me, stood by me, and together, we created movements fueled by passion and purpose.</p>
+                    <p>Even within the constraints of an engineering environment, I seized every opportunity to showcase my abilities. I poured my energy into leadership, creativity, and service. Becoming the President of my college NSS Unit was not just a title — it was a platform. I presided over numerous impactful programs under the National Service Scheme, and for the first time, I saw my peers look at me as their guiding force. They believed in me, stood by me, and together, we created movements fueled by passion and purpose.</p>
 
-                <p>When I graduated from Vivekananda Institute of Technology with a B.E. in CSE, my parents once again directed me toward the IT industry. But destiny had begun whispering a different story. I started conducting events across colleges, training students in soft skills, personality development, and behavioral transformation. After just a few sessions, an unexpected wave of appreciation, heartfelt feedback, and overwhelming gratitude from both students and faculty washed over me.</p>
-                
-                <p>That was the moment I knew — I had found my niche.</p>
+                    <p>When I graduated from Vivekananda Institute of Technology with a B.E. in CSE, my parents once again directed me toward the IT industry. But destiny had begun whispering a different story. I started conducting events across colleges, training students in soft skills, personality development, and behavioral transformation. After just a few sessions, an unexpected wave of appreciation, heartfelt feedback, and overwhelming gratitude from both students and faculty washed over me.</p>
+                    
+                    <p>That was the moment I knew — I had found my niche.</p>
 
-                <p class="highlight" style="text-align: center; font-size: 1.2rem; margin: 40px 0;">Not in codes or circuits, but in people. In transformation. In communication. In impact.</p>
+                    <p class="highlight" style="text-align: center; font-size: 1.2rem; margin: 40px 0;">Not in codes or circuits, but in people. In transformation. In communication. In impact.</p>
 
-                <p>Today, with immense gratitude for the grace showered upon me by the Almighty, my parents, my mentors, and everyone who believed in me, I stand proudly in my purpose. I am now pursuing a full-time career as a Soft-Skill Trainer and Behavioral Coach at TNS India Foundation, continuing the journey that once began as a dream in the shadow.</p>
+                    <p>Today, with immense gratitude for the grace showered upon me by the Almighty, my parents, my mentors, and everyone who believed in me, I stand proudly in my purpose. I am now pursuing a full-time career as a Soft-Skill Trainer and Behavioral Coach at TNS India Foundation, continuing the journey that once began as a dream in the shadow.</p>
 
-                <p>I was crafted by dreams, challenged by circumstances, and shaped into a leader born from the shadow — and this journey has only just begun.</p>
+                    <p>I was crafted by dreams, challenged by circumstances, and shaped into a leader born from the shadow — and this journey has only just begun.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -573,6 +802,76 @@
             <span class="tag">Case Studies</span>
             <span class="tag">Simulations</span>
             <span class="tag">Group Discussions</span>
+            <span class="tag">Gamified Learning</span>
+            <span class="tag">Activity-Based Learning</span>
+            <span class="tag">Psychometric Assessments</span>
+            <span class="tag">Real-Time Feedback & Micro-Coaching</span>
+            <span class="tag">Storytelling & Narrative Learning</span>
+        </div>
+    </section>
+
+    <section class="events-section" id="events">
+        <div class="reveal">
+            <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 20px; font-size: 2.5rem;">Events Gallery</h2>
+            
+            <div style="text-align: center; margin-bottom: 20px;">
+                <button class="toggle-btn" onclick="toggleEvents(this)">
+                    View Past Events <span class="toggle-icon">▼</span>
+                </button>
+            </div>
+
+            <div class="events-hidden-wrapper" id="eventsWrapper">
+                <div class="events-inner-container">
+                    
+                    <div class="event-card">
+                        <div class="event-header">
+                            <h3>Vivekananda Institute of Technology</h3>
+                            <span>Soft-Skill & Behavioral Session</span>
+                        </div>
+                        <div class="event-body">
+                            <div class="event-desc">
+                                <p>We focused on shifting the mindset from Content to Impact, mastering the art of professional delivery:</p>
+                                <ul>
+                                    <li>1️⃣ Mastering the <strong>𝗔𝗿𝘁 𝗼𝗳 𝗣𝘂𝗯𝗹𝗶𝗰 𝗦𝗽𝗲𝗮𝗸𝗶𝗻𝗴</strong> and persuasive delivery.</li>
+                                    <li>2️⃣ The <strong>𝗽𝗼𝘄𝗲𝗿 𝗼𝗳 𝗦𝘁𝗼𝗿𝘆𝘁𝗲𝗹𝗹𝗶𝗻𝗴</strong> over Jargon.</li>
+                                    <li>3️⃣ Analyzing <strong>𝗖𝗼𝗺𝗺𝘂𝗻𝗶𝗰𝗮𝘁𝗶𝗼𝗻 𝗧𝘆𝗽𝗲𝘀</strong> and Styles.</li>
+                                    <li>4️⃣ Understanding that <strong>𝗡𝗼𝗻-𝗩𝗲𝗿𝗯𝗮𝗹 𝗖𝘂𝗲𝘀</strong> dictate <strong>𝘁𝗿𝘂𝘀𝘁</strong> and <strong>𝗰𝗿𝗲𝗱𝗶𝗯𝗶𝗹𝗶𝘁𝘆</strong> instantly.</li>
+                                </ul>
+                            </div>
+                            <div class="event-gallery-grid">
+                                <div class="event-img"><img src="vkit4.jpg" alt="VIT Event"></div>
+                                <div class="event-img"><img src="vkit1.jpeg" alt="VIT Event"></div>
+                                <div class="event-img"><img src="vkit3.jpeg" alt="VIT Event"></div>
+                                <div class="event-img"><img src="vkit2.jpeg" alt="VIT Event"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-header">
+                            <h3>RajaRajeswari College of Learning</h3>
+                            <span>High-Pressure Simulations</span>
+                        </div>
+                        <div class="event-body">
+                            <div class="event-desc">
+                                <p>A dynamic session focused on real-world survival skills in corporate environments:</p>
+                                <ul>
+                                    <li>🎤 <strong>𝗛𝗶𝗴𝗵-𝗣𝗿𝗲𝘀𝘀𝘂𝗿𝗲 𝗦𝗶𝗺𝘂𝗹𝗮𝘁𝗶𝗼𝗻𝘀:</strong> From navigating chaotic Group Discussions (GDs) to nailing the "7-Second Impression" in face-to-face interviews.</li>
+                                    <li>🔥 <strong>𝗧𝗵𝗲 "𝗗𝗲𝘃𝗶𝗹'𝘀 𝗔𝗱𝘃𝗼𝗰𝗮𝘁𝗲" 𝗗𝗲𝗯𝗮𝘁𝗲𝘀:</strong> Forcing students to argue positions they didn't believe in, testing their Emotional Intelligence and Assertiveness under fire.</li>
+                                    <li>🧠 <strong>𝗦𝗰𝗲𝗻𝗮𝗿𝗶𝗼-𝗕𝗮𝘀𝗲𝗱 𝗧𝗿𝗶𝗮𝗴𝗲:</strong> Real-time decision-making on prioritizing aggressive bosses vs. crashing servers.</li>
+                                </ul>
+                            </div>
+                            <div class="event-gallery-grid">
+                                <div class="event-img"><img src="rrce1.jpg" alt="RajaRajeswari Event"></div>
+                                <div class="event-img"><img src="rrce2.jpg" alt="RajaRajeswari Event"></div>
+                                <div class="event-img"><img src="rrce3.jpg" alt="RajaRajeswari Event"></div>
+                                <div class="event-img"><img src="rrce4.jpg" alt="RajaRajeswari Event"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </section>
 
@@ -611,19 +910,51 @@
 
     <footer id="contact">
         <div class="reveal">
-            <h2 style="color: var(--white); margin-bottom: 20px;">Contact Deepak U</h2>
+            <h2 style="color: var(--white); margin-bottom: 20px;">Contact Deepak Shetty</h2>
             <p style="margin-bottom: 10px;">Email: maddee329@gmail.com</p>
             <p style="margin-bottom: 10px;">Mobile: +91 9353146340</p>
             <p>LinkedIn: <a href="https://linkedin.com/in/maddee">linkedin.com/in/maddee</a></p>
             <br>
             <hr style="border-color: #444;">
             <br>
-            <p class="copyright">&copy; 2025 Deepak U. All rights reserved.</p>
+            <p class="copyright">&copy; 2025 Deepak Shetty. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // 1. Scroll Reveal Logic
+        // 1. Story Toggle Logic
+        function toggleStory(btn) {
+            const wrapper = document.getElementById('storyWrapper');
+            btn.classList.toggle('active');
+            
+            if (wrapper.style.maxHeight) {
+                // Close
+                wrapper.style.maxHeight = null;
+                btn.innerHTML = 'Read My Journey <span class="toggle-icon">▼</span>';
+            } else {
+                // Open
+                wrapper.style.maxHeight = wrapper.scrollHeight + "px";
+                btn.innerHTML = 'Close Story <span class="toggle-icon">▲</span>';
+            }
+        }
+
+        // 2. Events Toggle Logic
+        function toggleEvents(btn) {
+            const wrapper = document.getElementById('eventsWrapper');
+            btn.classList.toggle('active');
+            
+            if (wrapper.style.maxHeight) {
+                // Close
+                wrapper.style.maxHeight = null;
+                btn.innerHTML = 'View Past Events <span class="toggle-icon">▼</span>';
+            } else {
+                // Open
+                wrapper.style.maxHeight = wrapper.scrollHeight + "px";
+                btn.innerHTML = 'Hide Events <span class="toggle-icon">▲</span>';
+            }
+        }
+
+        // 3. Scroll Reveal Logic
         window.addEventListener('scroll', reveal);
         function reveal() {
             var reveals = document.querySelectorAll('.reveal');
@@ -637,13 +968,13 @@
             }
         }
 
-        // 2. Navbar Transformation
+        // 4. Navbar Transformation
         const header = document.querySelector("header");
         window.addEventListener("scroll", function() {
             header.classList.toggle("scrolled", window.scrollY > 50);
         });
 
-        // 3. Number Counter Animation
+        // 5. Number Counter Animation
         let counted = false;
         const statsSection = document.querySelector('#stats-section');
         
