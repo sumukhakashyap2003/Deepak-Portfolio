@@ -8,7 +8,7 @@
         :root {
             --primary-color: #2c3e50;
             --accent-color: #e74c3c;
-            --yellow-accent: #f1c40f; /* From video */
+            --yellow-accent: #f1c40f; 
             --text-color: #333;
             --bg-light: #f4f7f6;
             --bg-dark: #222;
@@ -110,7 +110,7 @@
             width: 100%;
         }
 
-        /* --- NEW HERO SECTION (Modified) --- */
+        /* --- HERO SECTION --- */
         .hero {
             position: relative;
             height: 100vh;
@@ -119,8 +119,8 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            background-color: #f0f2f5; /* Light grey background */
-            padding-top: 60px; /* Space for navbar */
+            background-color: #f0f2f5; 
+            padding-top: 60px; 
         }
 
         /* 1. Yellow Circle Background */
@@ -136,8 +136,6 @@
             transform: translate(-50%, -50%) scale(0);
             animation: popIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
-
-        /* --- REMOVED OLD TEXT LAYER --- */
 
         /* 2. The Person Image */
         .hero-person-container {
@@ -160,25 +158,25 @@
             animation: riseUp 1.2s ease-out forwards 0.3s;
         }
 
-        /* --- NEW 3D TYPEWRITER TEXT SECTION --- */
+        /* --- DYNAMIC TYPEWRITER TEXT SECTION --- */
         .hero-typewriter-container {
             position: absolute;
-            bottom: 140px; /* Positioned low, just above the button */
+            bottom: 140px; 
             left: 50%;
             transform: translateX(-50%);
             z-index: 5; /* In front of image */
             text-align: center;
-            /* Ensure container fits the text for centering */
-            width: fit-content;
+            width: 90%; /* Wide enough for mobile */
+            max-width: 1200px;
         }
 
         .hero-3d-text {
-            font-size: 3vw; /* Responsive size */
+            font-size: 3vw; /* Responsive base size */
             font-weight: 900;
             text-transform: uppercase;
-            /* UPDATED COLOR FOR BETTER CONTRAST */
-            color: var(--accent-color); 
+            color: var(--primary-color); 
             line-height: 1.2;
+            white-space: normal; /* Allow wrapping on mobile */
             
             /* 3D Effect */
             text-shadow: 
@@ -187,22 +185,24 @@
                 3px 3px 0px #ccc,
                 4px 4px 0px #bbb,
                 5px 5px 8px rgba(0,0,0,0.4);
-            
-            /* Typewriter Effect Styles */
-            overflow: hidden; /* Ensures the content is not revealed until the animation */
-            border-right: .15em solid var(--primary-color); /* Cursor color adjusted to match text or stay dark */
-            white-space: nowrap; /* Keeps the content on a single line */
-            margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-            letter-spacing: 0.1em;
-            width: 0; /* Start with 0 width */
-            
-            /* Animation definitions */
-            animation: 
-                typing 3.5s steps(40, end) forwards 1s, /* Delay start by 1s after page load */
-                blink-caret .75s step-end infinite;
         }
 
-        /* --- REMOVED OLD FRONTLINE TAG --- */
+        /* The Changing Text Span */
+        #typewriter-text {
+            color: var(--accent-color);
+            position: relative;
+        }
+
+        /* The Blinking Cursor */
+        .cursor {
+            display: inline-block;
+            background-color: var(--primary-color);
+            width: 4px;
+            height: 0.9em; /* Matches font height */
+            margin-left: 5px;
+            vertical-align: text-bottom;
+            animation: blink 1s infinite;
+        }
 
         /* CTA Button */
         .hero-btn-wrapper {
@@ -217,28 +217,15 @@
         @keyframes popIn {
             to { transform: translate(-50%, -50%) scale(1); }
         }
-        
-        /* Removed slideUpText and fadeIn animations as they are no longer used */
 
         @keyframes riseUp {
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Removed popInTagline animation */
-
-        /* NEW Typewriter Animations */
-        /* The typing effect */
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
-
-        /* The typewriter cursor effect */
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--primary-color) }
-        }
-
 
         /* Button Style */
         .btn {
@@ -689,19 +676,19 @@
         @media (max-width: 768px) {
             .hero-circle { width: 300px; height: 300px; }
             .hero-person-img { height: 60vh; }
-            /* Removed old text layer responsive styles */
             
-            /* New responsive styles for 3D text */
-            .hero-3d-text {
-                font-size: 1.5rem; /* Fixed smaller size for mobile */
-                text-shadow: 
-                    2px 2px 4px rgba(0,0,0,0.3); /* Simpler shadow for mobile */
-                border-right-width: 3px;
-                letter-spacing: 1px;
-            }
+            /* --- FIXED MOBILE TEXT ISSUES --- */
             .hero-typewriter-container {
-                bottom: 130px;
-                width: 90%; /* Ensure it doesn't overflow small screens */
+                bottom: 110px;
+                width: 95%; /* Use almost full width */
+                padding: 0 10px;
+            }
+
+            .hero-3d-text {
+                font-size: 1.8rem; /* Use a readable size for mobile */
+                white-space: normal; /* Force wrap */
+                word-wrap: break-word;
+                line-height: 1.3;
             }
 
             .stats { flex-direction: column; gap: 40px; }
@@ -740,7 +727,10 @@
         </div>
 
         <div class="hero-typewriter-container">
-            <h1 class="hero-3d-text">Your Guide to Behavioral Excellence</h1>
+            <h1 class="hero-3d-text">
+                Your Guide to <br>
+                <span id="typewriter-text"></span><span class="cursor">|</span>
+            </h1>
         </div>
 
         <div class="hero-btn-wrapper">
@@ -984,7 +974,58 @@
     </footer>
 
     <script>
-        // 1. Story Toggle Logic
+        // --- 1. Typewriter Animation Logic ---
+        const phrases = [
+            "Behavioral Excellence", 
+            "Rewired Mindset", 
+            "Soft Skills Mastery", 
+            "Leadership Impact",
+            "Professional Growth"
+        ];
+        
+        const typeSpeed = 100; // Speed of typing
+        const deleteSpeed = 50; // Speed of deleting
+        const pauseTime = 2000; // Pause after full word is typed
+
+        let currentPhraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typewriterElement = document.getElementById('typewriter-text');
+
+        function typeLoop() {
+            const currentPhrase = phrases[currentPhraseIndex];
+            
+            if (isDeleting) {
+                // Remove characters
+                typewriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                // Add characters
+                typewriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let delta = isDeleting ? deleteSpeed : typeSpeed;
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                // Finished typing word, pause then delete
+                delta = pauseTime;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                // Finished deleting word, move to next
+                isDeleting = false;
+                currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+                delta = 500; // Small pause before typing next word
+            }
+
+            setTimeout(typeLoop, delta);
+        }
+
+        // Start the typewriter loop
+        document.addEventListener('DOMContentLoaded', typeLoop);
+
+
+        // --- 2. Story Toggle Logic ---
         function toggleStory(btn) {
             const wrapper = document.getElementById('storyWrapper');
             btn.classList.toggle('active');
@@ -1000,7 +1041,7 @@
             }
         }
 
-        // 2. Events Toggle Logic
+        // --- 3. Events Toggle Logic ---
         function toggleEvents(btn) {
             const wrapper = document.getElementById('eventsWrapper');
             btn.classList.toggle('active');
@@ -1016,7 +1057,7 @@
             }
         }
 
-        // 3. Scroll Reveal Logic
+        // --- 4. Scroll Reveal Logic ---
         window.addEventListener('scroll', reveal);
         function reveal() {
             var reveals = document.querySelectorAll('.reveal');
@@ -1030,13 +1071,13 @@
             }
         }
 
-        // 4. Navbar Transformation
+        // --- 5. Navbar Transformation ---
         const header = document.querySelector("header");
         window.addEventListener("scroll", function() {
             header.classList.toggle("scrolled", window.scrollY > 50);
         });
 
-        // 5. Number Counter Animation
+        // --- 6. Number Counter Animation ---
         let counted = false;
         const statsSection = document.querySelector('#stats-section');
         
